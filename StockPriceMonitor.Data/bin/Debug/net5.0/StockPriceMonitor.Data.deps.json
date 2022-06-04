@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "StockPriceMonitor.Data/1.0.0": {
+        "runtime": {
+          "StockPriceMonitor.Data.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "StockPriceMonitor.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
