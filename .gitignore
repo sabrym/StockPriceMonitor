@@ -20,7 +20,7 @@ yarn-error.log*
 .vs/slnx.sqlite
 .vs/VSWorkspaceState.json
 /.vs
-
+.vs
 
 *.dll
 *.pdb
@@ -35,4 +35,3 @@ build/
 bld/
 [Bb]in/
 [Oo]bj/
-xs/
