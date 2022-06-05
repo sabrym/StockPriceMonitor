@@ -3,6 +3,7 @@ import List from "../list/list-component";
 import Selector from "../select/select-component";
 
 export default class StockSelector extends Component {
+    stockApiUrl = 'https://localhost:7001/api';
     selectionTypes = {
         StockSource: 1,
         Stock: 2
@@ -14,7 +15,7 @@ export default class StockSelector extends Component {
     }
 
     componentDidMount() {
-        fetch('https://localhost:7001/api/stocks').then(res => res.json())
+        fetch(`${stockApiUrl}/stocks`).then(res => res.json())
             .then((stockSources) => {
                 if (stockSources) {
                     const defaultSource = stockSources[0];
@@ -26,7 +27,7 @@ export default class StockSelector extends Component {
                         stockSources: stockSources
                     });
 
-                    return fetch(`https://localhost:7001/api/stocks/get-prices/${defaultSource.id}/${defaultSource.stocks[0].id}`);
+                    return fetch(`${this.stockApiUrl}/stocks/get-prices/${defaultSource.id}/${defaultSource.stocks[0].id}`);
                 }
 
             }).then(res => res.json()).then((stockPrices) => {
@@ -45,7 +46,7 @@ export default class StockSelector extends Component {
 
 
                 this.setState({ stocks: newStocks, stockId: this.state.stocks[0].id }, () => {
-                    fetch(`https://localhost:7001/api/stocks/get-prices/${this.state.stockSourceId}/${this.state.stockId}`).then(res => res.json()).then((stockPrices) => {
+                    fetch(`${this.stockApiUrl}/stocks/get-prices/${this.state.stockSourceId}/${this.state.stockId}`).then(res => res.json()).then((stockPrices) => {
                         this.setState({
                             stockPrices: stockPrices
                         });
