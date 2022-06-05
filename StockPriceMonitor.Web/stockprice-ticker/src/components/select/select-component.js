@@ -1,6 +1,5 @@
 import Form from 'react-bootstrap/Form';
 
-// TODO: Add the styling here
 export default function Selector(props) {
   return (
     <Form.Select onChange={(e) => { props.onchange(e.target.value, props.type) }} value={props.selectedValue}>

@@ -8,8 +8,4 @@ export default function ListItem(props) {
             </tr>
         );
     }
-    else {
-        <span>No valid items</span>
-    }
-
 }

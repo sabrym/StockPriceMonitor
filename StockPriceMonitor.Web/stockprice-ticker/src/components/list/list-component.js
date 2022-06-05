@@ -12,10 +12,12 @@ export default function List(props) {
                         <th>Price $</th>
                     </tr>
                 </thead>
-                <tbody>
-                    {props.items && props.items.map((item, index) => (
+                <tbody data-testid="stock-items">
+                    {props.items ? props.items.map((item, index) => (
                         <ListItem key={index} timeStamp={item.timeStamp} price={item.price}></ListItem>
-                    ))}
+                    )) : <tr><td>
+                        No valid items
+                    </td></tr>}
                 </tbody>
             </Table>
         </Fragment>

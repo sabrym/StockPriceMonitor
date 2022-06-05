@@ -23,10 +23,16 @@ namespace StockPriceMonitor.Api.Controllers
         }
 
         [HttpGet("get-prices/{source}/{stockid}")]
-        public IEnumerable<StockPrice> GetPrices(int source, int stockId)
+        public IActionResult GetPrices(int source, int stockId)
         {
+            var prices = _stockRepository.GetStockPrice(source, stockId, true);
 
-            return _stockRepository.GetStockPrice(source, stockId, true);
+            if (prices == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(prices);
         }
     }
 }

@@ -1,8 +1,6 @@
-﻿using Microsoft.Extensions.Caching.Memory;
-using StockPriceMonitor.Data.Utilities;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using StockPriceMonitor.Data.Utilities;
 
 namespace StockPriceMonitor.Data
 {
@@ -71,6 +69,11 @@ namespace StockPriceMonitor.Data
 
         public IEnumerable<StockPrice> GetStockPrice(int stockSource, int stockId, bool useCache = false)
         {
+            if (stockSource < 1 || stockId < 1)
+            {
+                return null;
+            }
+
             var cacheKey = $"{stockSource}-{stockId}";
 
             var prices = useCache ? _cacheManager.GetValueOrDefault(cacheKey) : Enumerable.Empty<StockPrice>();

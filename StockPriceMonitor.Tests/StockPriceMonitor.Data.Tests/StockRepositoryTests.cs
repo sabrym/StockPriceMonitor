@@ -25,9 +25,26 @@ public class StockRepositoryTests
     }
 
     [Test]
-    public void GetStockPrice_Always_GreaterThanZero()
+    public void GetStockPrice_Always_HasFiveItems()
+    {
+        var items = _stockRepository.GetStockPrice(1, 1);
+        Assert.That(items.Count(), Is.EqualTo(5));
+    }
+
+    [Test]
+    public void GetStockPrice_AllPrices_GreaterThanZero()
     {
         var items = _stockRepository.GetStockPrice(1,1);
-        Assert.That(items.Any(x => x.Price > 0), Is.EqualTo(true));
+        Assert.That(items.All(x => x.Price > 0), Is.EqualTo(true));
+    }
+
+    [Test]
+    [TestCase(-1, 1)]
+    [TestCase(1, -1)]
+    [TestCase(-1, -1)]
+    public void GetStockPrice_AllPrices_InvalidInput(int stockSourceId, int stockPriceId)
+    {
+        var items = _stockRepository.GetStockPrice(stockSourceId, stockPriceId);
+        Assert.That(items, Is.EqualTo(null));
     }
 }
