@@ -8,6 +8,10 @@ Once that is completed, it is recommended that the solution is built in Visual S
 
 ## API
 The API could be run using `dotnet run` command in the StockPriceMonitor.Api project or using Visual Studio and running the mentioned project as a startup project.
+The port defined to run the application is [https:localhost:7001/](https://localhost:7001/) so ensure the port is available for successful running of the application.
+
+## Tests
+StockPriceMonitor.Data.Tests represents the unit test project for the backend. The tests were developed based on NUnit and, as such can be executed via Visual Studio with the dependencies installed.
 
 
 # Stock Price Ticker Frontend app
