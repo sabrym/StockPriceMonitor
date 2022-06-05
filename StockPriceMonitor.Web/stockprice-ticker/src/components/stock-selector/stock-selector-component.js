@@ -15,7 +15,11 @@ export default class StockSelector extends Component {
     }
 
     componentDidMount() {
-        fetch(`${stockApiUrl}/stocks`).then(res => res.json())
+        this.getStockSourcesOnLoad();
+    }
+
+    getStockSourcesOnLoad() {
+        fetch(`${this.stockApiUrl}/stocks`).then(res => res.json())
             .then((stockSources) => {
                 if (stockSources) {
                     const defaultSource = stockSources[0];
@@ -29,7 +33,6 @@ export default class StockSelector extends Component {
 
                     return fetch(`${this.stockApiUrl}/stocks/get-prices/${defaultSource.id}/${defaultSource.stocks[0].id}`);
                 }
-
             }).then(res => res.json()).then((stockPrices) => {
                 this.setState({
                     stockPrices: stockPrices
@@ -44,26 +47,24 @@ export default class StockSelector extends Component {
                     return item.id === this.state.stockSourceId;
                 }).stocks;
 
-
                 this.setState({ stocks: newStocks, stockId: this.state.stocks[0].id }, () => {
-                    fetch(`${this.stockApiUrl}/stocks/get-prices/${this.state.stockSourceId}/${this.state.stockId}`).then(res => res.json()).then((stockPrices) => {
-                        this.setState({
-                            stockPrices: stockPrices
-                        });
-                    });
+                    this.getStockPrices();
                 });
-
             });
         }
         else {
             this.setState({ stockId: selectionValue }, () => {
-                fetch(`https://localhost:7001/api/stocks/get-prices/${this.state.stockSourceId}/${this.state.stockId}`).then(res => res.json()).then((stockPrices) => {
-                    this.setState({
-                        stockPrices: stockPrices
-                    });
-                });
+                this.getStockPrices();
             });
         }
+    }
+
+    getStockPrices() {
+        fetch(`${this.stockApiUrl}/stocks/get-prices/${this.state.stockSourceId}/${this.state.stockId}`).then(res => res.json()).then((stockPrices) => {
+            this.setState({
+                stockPrices: stockPrices
+            });
+        });
     }
 
     render() {
