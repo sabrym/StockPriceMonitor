@@ -1,4 +1,3 @@
-import './App.css';
 import StockSelector from './components/stock-selector/stock-selector-component';
 import Container from 'react-bootstrap/Container';
 

@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { TabContainer, Table } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import ListItem from "./list-item/list-item-component";
 
 export default function List(props) {
@@ -9,7 +9,7 @@ export default function List(props) {
                 <thead>
                     <tr>
                         <th>Time</th>
-                        <th>Price</th>
+                        <th>Price $</th>
                     </tr>
                 </thead>
                 <tbody>
