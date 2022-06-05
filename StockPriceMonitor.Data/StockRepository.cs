@@ -3,17 +3,16 @@ using StockPriceMonitor.Data.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 
 namespace StockPriceMonitor.Data
 {
     public class StockRepository : IStockRepository
     {
-        private readonly IMemoryCache _memoryCache;
+        private readonly CacheManager _cacheManager;
 
-        public StockRepository(IMemoryCache memoryCache)
+        public StockRepository(CacheManager cacheManager)
         {
-            _memoryCache = memoryCache;
+            _cacheManager = cacheManager;
             StockPriceRandomizer.Init(2, 3);
         }
 
@@ -70,25 +69,22 @@ namespace StockPriceMonitor.Data
             };
         }
 
-        public IEnumerable<StockPrice> GetStockPrice(int stockSource, int stockId)
+        public IEnumerable<StockPrice> GetStockPrice(int stockSource, int stockId, bool useCache = false)
         {
             var cacheKey = $"{stockSource}-{stockId}";
 
-            if (_memoryCache.TryGetValue(cacheKey, out IEnumerable<StockPrice> prices))
+            var prices = useCache ? _cacheManager.GetValueOrDefault(cacheKey) : Enumerable.Empty<StockPrice>();
+            if (prices != null && prices.Any())
             {
                 return prices;
             }
 
             prices = StockPriceRandomizer.GenerateStockPricesAsDouble(cacheKey).ToList();
 
-            var cacheExpiryOptions = new MemoryCacheEntryOptions
+            if (useCache)
             {
-                AbsoluteExpiration = DateTime.Now.AddSeconds(5),
-                Priority = CacheItemPriority.High,
-                SlidingExpiration = TimeSpan.FromSeconds(2)
-            };
-
-            _memoryCache.Set(cacheKey, prices, cacheExpiryOptions);
+                _cacheManager.AddToCache(cacheKey, prices);
+            }
 
             return prices;
         }

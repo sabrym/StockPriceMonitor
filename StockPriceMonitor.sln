@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{CF27
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BBFE5690-7E3F-4FF3-AAB3-35C880CCB4B2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockPriceMonitor.Data.Tests", "StockPriceMonitor.Tests\StockPriceMonitor.Data.Tests\StockPriceMonitor.Data.Tests.csproj", "{0DEA80AA-DECD-4073-AD7C-FEA8B730DB58}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{107A01B5-F78A-46CD-8CF6-E21213A67119}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{107A01B5-F78A-46CD-8CF6-E21213A67119}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{107A01B5-F78A-46CD-8CF6-E21213A67119}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DEA80AA-DECD-4073-AD7C-FEA8B730DB58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DEA80AA-DECD-4073-AD7C-FEA8B730DB58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DEA80AA-DECD-4073-AD7C-FEA8B730DB58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DEA80AA-DECD-4073-AD7C-FEA8B730DB58}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{829A4EBC-E0E0-4F29-9995-B3A7C425B957} = {CF278C9A-DC26-4748-989F-0DC65DB5A909}
 		{107A01B5-F78A-46CD-8CF6-E21213A67119} = {CF278C9A-DC26-4748-989F-0DC65DB5A909}
+		{0DEA80AA-DECD-4073-AD7C-FEA8B730DB58} = {BBFE5690-7E3F-4FF3-AAB3-35C880CCB4B2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {50F6F325-9228-4EE5-8AD2-42308C5A24A2}

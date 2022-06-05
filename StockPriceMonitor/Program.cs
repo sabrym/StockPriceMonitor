@@ -1,4 +1,5 @@
 using StockPriceMonitor.Data;
+using StockPriceMonitor.Data.Utilities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddSingleton<IStockRepository, StockRepository>();
+builder.Services.AddSingleton<CacheManager>();
+
 builder.Services.AddMemoryCache();
 builder.Services.AddCors(options =>
 {

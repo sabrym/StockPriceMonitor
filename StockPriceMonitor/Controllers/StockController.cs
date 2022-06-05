@@ -26,7 +26,7 @@ namespace StockPriceMonitor.Api.Controllers
         public IEnumerable<StockPrice> GetPrices(int source, int stockId)
         {
 
-            return _stockRepository.GetStockPrice(source, stockId);
+            return _stockRepository.GetStockPrice(source, stockId, true);
         }
     }
 }
