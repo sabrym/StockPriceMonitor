@@ -7,9 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddSingleton<IStockRepository, StockRepository>();
-builder.Services.AddSingleton<CacheManager>();
 
 builder.Services.AddMemoryCache();
+builder.Services.AddSingleton<CacheManager>();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: "development-origins",
