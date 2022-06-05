@@ -1,3 +1,6 @@
+# Putting it all together
+In order for the application to work properly, both the Frontend and Backend projects need to be running to get the expected result.
+Please follow the steps below for both frontend and backend.
 
 # Stock Price Ticker Backend app
 
@@ -39,6 +42,3 @@ You may also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-
-# Putting it all together
-In order for the application to work properly, both the Frontend and Backend projects need to be running to get the expected result.
