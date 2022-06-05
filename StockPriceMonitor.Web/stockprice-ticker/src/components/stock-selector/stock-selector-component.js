@@ -11,7 +11,7 @@ export default class StockSelector extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { stockSourceId: 0, stockId: 0, stockSources: [], stocks: [] };
+        this.state = { stockSourceId: 0, stockId: 0, stockSources: [], stocks: [], errorState: false, loading: true };
     }
 
     componentDidMount() {
@@ -25,6 +25,7 @@ export default class StockSelector extends Component {
                     const defaultSource = stockSources[0];
 
                     this.setState({
+                        loading: false,
                         stockSourceId: defaultSource.id,
                         stockId: defaultSource.stocks[0].id,
                         stocks: defaultSource.stocks,
@@ -33,6 +34,9 @@ export default class StockSelector extends Component {
 
                     return fetch(`${this.stockApiUrl}/stocks/get-prices/${defaultSource.id}/${defaultSource.stocks[0].id}`);
                 }
+            }).catch(() => {
+                this.setState({ errorState: true, loading: false });
+                return Promise.reject();
             }).then(res => res.json()).then((stockPrices) => {
                 this.setState({
                     stockPrices: stockPrices
@@ -68,6 +72,16 @@ export default class StockSelector extends Component {
     }
 
     render() {
+        if (this.state.loading) {
+            return (<div>
+                <span>Loading..</span>
+            </div>)
+        }
+        if (this.state.errorState) {
+            return (<div>
+                <span>An error occurred, please refresh</span>
+            </div>)
+        }
         return (
             <Fragment>
                 <div data-testid="stock-selector">
